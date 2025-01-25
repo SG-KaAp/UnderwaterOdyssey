@@ -16,6 +16,7 @@ namespace Base.FirstPersonController
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
         [SerializeField] private RectTransform staminaLine;
+        [SerializeField] private Input.InputManager _input;
         //[SerializeField] private Animator footstepsAnimator;
 
         //Settings
@@ -38,7 +39,6 @@ namespace Base.FirstPersonController
         private bool _isSprinted = false;
         private bool _sprintAllowed = true;
         private float stamina = 6f;
-        private Input.InputManager _input;
 
         private bool _isGrounded()
         {
