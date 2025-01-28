@@ -74,6 +74,7 @@ namespace Network
         {
             if (result != Result.OK) return;
             lobby.SetData("HostAddress", SteamClient.SteamId.ToString());
+            lobby.SetData("GameVersion", Application.version);
             fishyFacepunch.SetClientAddress(SteamClient.SteamId.ToString());
             fishyFacepunch.StartConnection(true);
             Debug.Log("The lobby has been created successfully! HostAddress: " + lobby.GetData("Hostaddress") + ". Lobby name: " + lobby.GetData("LobbyName") + ". Lobby ID: " + lobby.Id + ". Max players: " + lobby.MaxMembers + ". Lobby type: " + CurrentLobbyType + ". Owner: " + lobby.Owner);

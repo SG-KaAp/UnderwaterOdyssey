@@ -5,6 +5,7 @@ by Kazantsev Arseniy*/
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Connection;
+using UnityEngine.UI;
 
 namespace Base.FirstPersonController
 {
@@ -15,8 +16,9 @@ namespace Base.FirstPersonController
         //Get need components
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Camera playerCamera;
-        [SerializeField] private RectTransform staminaLine;
-        [SerializeField] private Input.InputManager _input;
+        [SerializeField] private UI.PlayerGUI playerGUI;
+        [SerializeField] private Image staminaLine;
+        [SerializeField] private Input.InputManager input;
         //[SerializeField] private Animator footstepsAnimator;
 
         //Settings
@@ -38,7 +40,7 @@ namespace Base.FirstPersonController
         private float _cameraLookY;
         private bool _isSprinted = false;
         private bool _sprintAllowed = true;
-        private float stamina = 6f;
+        private float _stamina = 6f;
 
         private bool _isGrounded()
         {
@@ -65,7 +67,9 @@ namespace Base.FirstPersonController
             playerCamera = Camera.main;
             playerCamera.transform.SetParent(transform);
             playerCamera.transform.localPosition = new Vector3(0, 0.5f, 0);
-            _input = FindAnyObjectByType<Input.InputManager>();
+            input = FindAnyObjectByType<Input.InputManager>();
+            playerGUI = FindAnyObjectByType<UI.PlayerGUI>();
+            staminaLine = playerGUI.StaminaLine;
             Cursor.lockState = CursorLockMode.Locked;
             _currentSpeed = walkSpeed;
         }
@@ -76,23 +80,23 @@ namespace Base.FirstPersonController
             // Check: Movement is enable?
             if (enableMovement && _isGrounded())
             {
-                _playerMovementVector = _input.GetMovementVector();
+                _playerMovementVector = input.GetMovementVector();
                 PlayerMove(_playerMovementVector);
             }
 
             //Check: Movement is enable?
             if (enableCameraLook)
             {
-                _cameraLookVector = _input.GetCameraLookVector();
+                _cameraLookVector = input.GetCameraLookVector();
                 CameraLook(_cameraLookVector);
             }
 
-            if (_input.GetJumpButtonState())
+            if (input.GetJumpButtonState())
             {
                 Jump(jumpForce);
             }
  
-            Sprint(_input.GetSprintButtonState(), sprintSpeed);
+            Sprint(input.GetSprintButtonState(), sprintSpeed);
         }
 
         private void PlayerMove(Vector2 _playerMovementVector)
@@ -129,34 +133,34 @@ namespace Base.FirstPersonController
 
         private void Sprint(bool enable, float speed)
         {
-            if (enable && _isGrounded() && _sprintAllowed)
+            if (enable && _isGrounded() && _sprintAllowed && input.GetMovementVector() != Vector2.zero)
             {
                 _isSprinted = true;
                 _currentSpeed = speed;
-                stamina -= 1 * Time.deltaTime;
-                float normalizedValue = Mathf.InverseLerp(0, 6, stamina);
+                _stamina -= 1 * Time.deltaTime;
+                float normalizedValue = Mathf.InverseLerp(0, 6, _stamina);
                 float result = Mathf.Lerp(0, 1, normalizedValue);
-                staminaLine.localScale = new Vector2(result, 1);
+                staminaLine.fillAmount = result;
             }
             else
             {
                 _isSprinted = false;
                 _currentSpeed = walkSpeed;
-                if (stamina < 6f)
+                if (_stamina < 6f)
                 {
-                    stamina += 1 * Time.deltaTime;
-                    float normalizedValue = Mathf.InverseLerp(0, 6, stamina);
+                    _stamina += 1 * Time.deltaTime;
+                    float normalizedValue = Mathf.InverseLerp(0, 6, _stamina);
                     float result = Mathf.Lerp(0, 1, normalizedValue);
-                    staminaLine.localScale = new Vector2(result, 1);
+                    staminaLine.fillAmount = result;
                 }
             }
 
-            if (stamina <= 0)
+            if (_stamina <= 0)
             {
                 _sprintAllowed = false;
             }
 
-            if (stamina >= 2)
+            if (_stamina >= 2)
             {
                 _sprintAllowed = true;
             }

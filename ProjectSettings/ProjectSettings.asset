@@ -154,7 +154,7 @@ PlayerSettings:
   enableFrameTimingStats: 0
   enableOpenGLProfilerGPURecorders: 1
   allowHDRDisplaySupport: 1
-  useHDRDisplay: 1
+  useHDRDisplay: 0
   hdrBitDepth: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
@@ -528,6 +528,9 @@ PlayerSettings:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000
     m_Automatic: 0
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 120000000200000015000000
+    m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
   m_DefaultShaderChunkCount: 0
@@ -819,7 +822,7 @@ PlayerSettings:
   webWasm2023: 0
   scriptingDefineSymbols:
     Android: STEAMAUDIO_ENABLED
-    Standalone: FISHNET;FISHNET_V4;EDGEGAP_PLUGIN_SERVERS;STEAMWORKS_NET;FISHNET_DISABLE_V3TOV4_HELPERS;STEAMAUDIO_ENABLED
+    Standalone: FISHNET;FISHNET_V4;EDGEGAP_PLUGIN_SERVERS;FISHNET_DISABLE_V3TOV4_HELPERS;STEAMAUDIO_ENABLED
     WebGL: STEAMAUDIO_ENABLED
     iPhone: STEAMAUDIO_ENABLED
   additionalCompilerArguments: {}
@@ -859,7 +862,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: UnderwaterOdyssey
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -867,7 +870,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: UnderwaterOdyssey
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: UnderwaterOdyssey
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -934,7 +937,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: 52c6e43d-2d98-4883-845d-ea52feb67cf8
   framebufferDepthMemorylessMode: 0

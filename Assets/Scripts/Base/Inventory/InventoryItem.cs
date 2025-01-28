@@ -5,6 +5,7 @@ namespace Base.Inventory
     public class InventoryItem : ScriptableObject
     {
         [SerializeField] private GameObject item;
+        [SerializeField] private Sprite icon;
         [SerializeField] private float needCeils = 1;
     }
 }
