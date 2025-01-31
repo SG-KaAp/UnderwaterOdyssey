@@ -10,7 +10,7 @@ namespace Input
         private void OnDisable() { _input.Disable(); }
         public Vector2 GetMovementVector() { return _input.Player.MovementVector.ReadValue<Vector2>(); }
         public Vector2 GetCameraLookVector() { return _input.Player.CameraLook.ReadValue<Vector2>(); }
-        public Vector2 GetMousePosition() { return _input.UI.MousePosition.ReadValue<Vector2>(); }
+        //public Vector2 GetMousePosition() { return _input.UI.MousePosition.ReadValue<Vector2>(); }
         public bool GetJumpButtonState() { return _input.Player.Jump.triggered; }
         public bool GetSprintButtonState() { return _input.Player.Sprint.IsPressed(); }
         public bool GetCrouchButtonState() { return _input.Player.Crouch.IsPressed(); }

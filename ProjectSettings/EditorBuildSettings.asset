@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/NetworkTest.unity
     guid: 83e27e48b0aa8d44895cb934eb1f7695
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 31c303003e7e6ce49ab7319eb714aeea, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d232cf7ddbbccf541a135a6322ad739d, type: 3}
   m_UseUCBPForAssetBundles: 0

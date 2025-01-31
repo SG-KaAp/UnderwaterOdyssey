@@ -33,6 +33,7 @@ namespace Base.FirstPersonController
         [SerializeField, Range(-360, 360)] private float minCameraX = -60f;
 
         //Mutable Variables
+        private Vector3 _originalScale;
         private float _currentSpeed = 5f;
         private Vector2 _playerMovementVector;
         private Vector2 _cameraLookVector;
@@ -41,6 +42,7 @@ namespace Base.FirstPersonController
         private bool _isSprinted = false;
         private bool _sprintAllowed = true;
         private float _stamina = 6f;
+        private bool _isCrouched = false;
 
         private bool _isGrounded()
         {
@@ -72,6 +74,7 @@ namespace Base.FirstPersonController
             staminaLine = playerGUI.StaminaLine;
             Cursor.lockState = CursorLockMode.Locked;
             _currentSpeed = walkSpeed;
+            _originalScale = transform.localScale;
         }
 
         private void Update()
@@ -95,7 +98,7 @@ namespace Base.FirstPersonController
             {
                 Jump(jumpForce);
             }
- 
+            Crouch(input.GetCrouchButtonState(),_isCrouched);
             Sprint(input.GetSprintButtonState(), sprintSpeed);
         }
 
@@ -121,6 +124,20 @@ namespace Base.FirstPersonController
             }
             playerCamera.transform.localEulerAngles = new Vector3(_cameraLookX, 0, 0);
             transform.eulerAngles = new Vector3(0, _cameraLookY, 0);
+        }
+
+        private void Crouch(bool enable, bool crouch)
+        {
+            if (!crouch && enable)
+            {
+                transform.localScale = new Vector3(_originalScale.x, .75f, _originalScale.z);
+                crouch = false;
+            }
+            else
+            {
+                transform.localScale = new Vector3(_originalScale.x, _originalScale.y, _originalScale.z);
+                crouch = true;
+            }
         }
 
         private void Jump(float force)
