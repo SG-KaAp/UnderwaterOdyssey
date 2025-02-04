@@ -17,13 +17,14 @@ namespace Steam
 
         private void Start()
         {
-            if (steamInitOnAwake) 
+            if (steamInitOnAwake && !SteamClient.IsValid)
                 SteamInit(steamAppIdForInit);
-
             if (dontDestroyOnLoad) 
                 DontDestroyOnLoad(gameObject);
-            if (invokeEventAfterSteamInit)
+            if (invokeEventAfterSteamInit && SteamClient.IsValid)
                 unityEventOnSteamInit.Invoke();
+            else if (invokeEventAfterSteamInitCausedAnError)
+                Application.Quit();
         }
         public void SteamInit(uint steamAppId)
         {

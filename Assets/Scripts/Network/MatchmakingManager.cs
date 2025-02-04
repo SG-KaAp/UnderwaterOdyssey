@@ -1,6 +1,7 @@
 using UnityEngine;
 using Steamworks;
 using Steamworks.Data;
+using UnityEngine.ProBuilder.MeshOperations;
 
 namespace Network
 {
@@ -8,6 +9,7 @@ namespace Network
     {
         [SerializeField] private FishyFacepunch.FishyFacepunch fishyFacepunch;
         public enum LobbyType {Private, FriendsOnly, Public}
+        public static bool IsInLobby;
         public static Lobby CurrentLobby;
         public static SteamId CurrentLobbyId;
         public static LobbyType CurrentLobbyType;
@@ -66,25 +68,35 @@ namespace Network
                     break;
             }
         }
+        public static async void JoinLobbyById(SteamId lobbyId)
+        {
+            await SteamMatchmaking.JoinLobbyAsync(lobbyId);
+        }
         private async void LobbyJoinRequest(Lobby lobby, SteamId friendId)
         {
+            if (lobby.GetData("GameVersion") != Application.version) return;
             await lobby.Join();
         }
         private void OnLobbyCreated(Result result, Lobby lobby)
         {
             if (result != Result.OK) return;
-            lobby.SetData("HostAddress", SteamClient.SteamId.ToString());
             lobby.SetData("GameVersion", Application.version);
             fishyFacepunch.SetClientAddress(SteamClient.SteamId.ToString());
             fishyFacepunch.StartConnection(true);
-            Debug.Log("The lobby has been created successfully! HostAddress: " + lobby.GetData("Hostaddress") + ". Lobby name: " + lobby.GetData("LobbyName") + ". Lobby ID: " + lobby.Id + ". Max players: " + lobby.MaxMembers + ". Lobby type: " + CurrentLobbyType + ". Owner: " + lobby.Owner);
+            Debug.Log("The lobby has been created successfully! HostAddress: " + SteamClient.SteamId.ToString() + ". Lobby name: " + lobby.GetData("LobbyName") + ". Lobby ID: " + lobby.Id + ". Max players: " + lobby.MaxMembers + ". Lobby type: " + CurrentLobbyType + ". Owner: " + lobby.Owner);
         }
         private void OnLobbyEntered(Lobby lobby)
         {
+            if (lobby.GetData("GameVersion") != Application.version)
+            {
+                lobby.Leave();
+                return;
+            }
             CurrentLobby = lobby;
             CurrentLobbyId = lobby.Id;
-            fishyFacepunch.SetClientAddress(CurrentLobby.GetData("HostAddress"));
+            fishyFacepunch.SetClientAddress(lobby.Owner.Id.ToString());
             fishyFacepunch.StartConnection(false);
+            IsInLobby = true;
             Debug.Log("Entered the lobby");
         }
     }
