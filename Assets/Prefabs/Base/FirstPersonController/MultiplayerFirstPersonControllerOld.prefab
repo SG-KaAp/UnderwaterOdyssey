@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1154688353065794873}
   - component: {fileID: 5670060195422466852}
   - component: {fileID: 8732232792757737692}
+  - component: {fileID: 600208735694521592}
   - component: {fileID: 5486845611753062299}
   - component: {fileID: 110300474284153723}
   - component: {fileID: 5011112573637818224}
@@ -172,6 +173,19 @@ MonoBehaviour:
   enableXClamp: 1
   maxCameraX: 60
   minCameraX: -60
+--- !u!114 &600208735694521592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118917636874249641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e2b232867b5a841b2a54607044edad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
 --- !u!114 &5486845611753062299
 MonoBehaviour:
   m_ObjectHideFlags: 0
