@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 110300474284153723}
   - component: {fileID: 5011112573637818224}
   - component: {fileID: 1436932466846887283}
+  - component: {fileID: 2053076017569364073}
   - component: {fileID: 1147451496799450034}
   m_Layer: 0
   m_Name: MultiplayerFirstPersonController
@@ -193,7 +194,7 @@ MonoBehaviour:
   _extrapolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  _clientAuthoritative: 1
+  _clientAuthoritative: 0
   _sendToOwner: 1
   _interval: 1
   _synchronizePosition: 1
@@ -220,20 +221,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1118917636874249641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004e67fd550c68f42912bdbe1f8f3832, type: 3}
+  m_Script: {fileID: 11500000, guid: 8047bd17aa70381459aa343a29487c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 110300474284153723}
   _networkObjectCache: {fileID: 0}
-  walkingSpeed: 7.5
-  runningSpeed: 11.5
-  jumpSpeed: 8
-  gravity: 20
-  playerCamera: {fileID: 0}
-  lookSpeed: 2
-  lookXLimit: 45
   characterController: {fileID: 1147451496799450034}
+  playerCamera: {fileID: 0}
+  playerGUI: {fileID: 0}
+  staminaLine: {fileID: 0}
+  enableMovement: 1
+  enableCameraLook: 1
+  walkSpeed: 5
+  sprintSpeed: 7
+  jumpForce: 5
+  mouseSensitivity: 0.5
+  enableXClamp: 1
+  maxCameraX: 60
+  minCameraX: -60
+--- !u!114 &2053076017569364073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118917636874249641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a13ca3303bfe7e49b278c3a92433bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &1147451496799450034
 CharacterController:
   m_ObjectHideFlags: 0
