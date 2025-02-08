@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: UO_FmodProject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638728942747217819
+  lastModified: 638742535518545983
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: UO_FmodProject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638728942747227817
+  lastModified: 638742535518545983
   FileSizes:
   - Name: Desktop
     Value: 712
@@ -61,5 +61,5 @@ MonoBehaviour:
   - {fileID: -8098481014390762234}
   StringsBanks:
   - {fileID: -4743063511217003666}
-  cacheTime: 638728942747227817
+  cacheTime: 638742535518545983
   cacheVersion: 131622
