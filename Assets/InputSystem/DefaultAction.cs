@@ -487,6 +487,15 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyboardKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4e87ca6-5601-4d89-b3d3-1953089f175c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -918,6 +927,17 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
                     ""action"": ""Chat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26b1f905-da60-48c2-a755-243a7e53c3fc"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardAndMouse"",
+                    ""action"": ""KeyboardKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1025,6 +1045,7 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_Chat = m_UI.FindAction("Chat", throwIfNotFound: true);
+        m_UI_KeyboardKey = m_UI.FindAction("KeyboardKey", throwIfNotFound: true);
         // Developer
         m_Developer = asset.FindActionMap("Developer", throwIfNotFound: true);
         m_Developer_Console = m_Developer.FindAction("Console", throwIfNotFound: true);
@@ -1226,6 +1247,7 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_Chat;
+    private readonly InputAction m_UI_KeyboardKey;
     public struct UIActions
     {
         private @DefaultAction m_Wrapper;
@@ -1241,6 +1263,7 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @Chat => m_Wrapper.m_UI_Chat;
+        public InputAction @KeyboardKey => m_Wrapper.m_UI_KeyboardKey;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1283,6 +1306,9 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
             @Chat.started += instance.OnChat;
             @Chat.performed += instance.OnChat;
             @Chat.canceled += instance.OnChat;
+            @KeyboardKey.started += instance.OnKeyboardKey;
+            @KeyboardKey.performed += instance.OnKeyboardKey;
+            @KeyboardKey.canceled += instance.OnKeyboardKey;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1320,6 +1346,9 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
             @Chat.started -= instance.OnChat;
             @Chat.performed -= instance.OnChat;
             @Chat.canceled -= instance.OnChat;
+            @KeyboardKey.started -= instance.OnKeyboardKey;
+            @KeyboardKey.performed -= instance.OnKeyboardKey;
+            @KeyboardKey.canceled -= instance.OnKeyboardKey;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1435,6 +1464,7 @@ public partial class @DefaultAction: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnChat(InputAction.CallbackContext context);
+        void OnKeyboardKey(InputAction.CallbackContext context);
     }
     public interface IDeveloperActions
     {

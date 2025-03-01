@@ -15,11 +15,58 @@ MonoBehaviour:
   Path: UO_FmodProject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638728942747217819
+  lastModified: 638764400133818290
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-7918724622807623989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SoundsPack1.bank
+  m_EditorClassIdentifier: 
+  Path: UO_FmodProject/Build/Desktop/SoundsPack1.bank
+  Name: SoundsPack1
+  StudioPath: bank:/SoundsPack1
+  lastModified: 638764400135196728
+  FileSizes:
+  - Name: Desktop
+    Value: 4032
+  Exists: 1
+--- !u!114 &-5892023409614675428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KeyboardKey
+  m_EditorClassIdentifier: 
+  Path: event:/KeyboardKey
+  Guid:
+    Data1: 766386132
+    Data2: 1264830107
+    Data3: 839637652
+    Data4: 2008046094
+  Banks:
+  - {fileID: -7918724622807623989}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 115
 --- !u!114 &-4743063511217003666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,10 +82,10 @@ MonoBehaviour:
   Path: UO_FmodProject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638728942747227817
+  lastModified: 638764400133828344
   FileSizes:
   - Name: Desktop
-    Value: 712
+    Value: 814
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -55,11 +102,13 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: -4743063511217003666}
   - {fileID: -8098481014390762234}
-  EditorEvents: []
+  - {fileID: -7918724622807623989}
+  EditorEvents:
+  - {fileID: -5892023409614675428}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8098481014390762234}
   StringsBanks:
   - {fileID: -4743063511217003666}
-  cacheTime: 638728942747227817
+  cacheTime: 638764400135196728
   cacheVersion: 131622
